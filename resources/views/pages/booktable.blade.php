@@ -47,7 +47,7 @@
                     <div class="form-group">
                         <label for="arrivingtime">Arriving Time:</label>
                         <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
-                            <input type="text" name="arrivingtime" id="arrivingtime" class="form-control datetimepicker-input" data-target="#datetimepicker3"/>
+                            <input type="text" name="arrivingtime" id="arrivingtime" class="form-control datetimepicker-input" data-target="#datetimepicker3"required>
                                 <div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
                             </div>
@@ -58,7 +58,7 @@
                     <div class="form-group">
                         <label for="leavingtime">Leaving Time:</label>
                         <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-                            <input type="text" name="leavingtime" id="leavingtime" class="form-control datetimepicker-input" data-target="#datetimepicker2"/>
+                            <input type="text" name="leavingtime" id="leavingtime" class="form-control datetimepicker-input" data-target="#datetimepicker2" required>
                             <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
                             </div>
@@ -97,15 +97,15 @@
             <div class="col-lg-8 offset-lg-2 col-md-12 offset-md-0" id="user-info">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" name="name" id="name"  class="form-control">
+                    <input type="text" name="name" id="name"  class="form-control" required>
                 </div>
                 <div class="form-group">
                         <label for="phone">Phone</label>
-                        <input type="number" name="phone" id="phone" class="form-control">
+                        <input type="number" name="phone" id="phone" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" name="email" id="email" class="form-control">
+                    <input type="email" name="email" id="email" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="person">People</label>
@@ -320,7 +320,7 @@
                             console.log("match");
                             $("#user-info").hide();
                             $("#show-table").hide();
-                            $('#avaliabletable').html("<h2>We are sorry</h2>");
+                            $('#avaliabletable').html(`<div class="alert alert-danger"><strong>Sorry!</strong>Tables are not free at this time.Please you can choose a table another time</div>`);
                             return false;
                         }else{
                             avaliable_table = all_table.filter(val => !occupy_table.includes(val));
@@ -340,7 +340,7 @@
                             console.log("match");
                             $("#user-info").hide();
                             $("#show-table").hide();
-                            $('#avaliabletable').html("<h2>We are sorry</h2>");
+                            $('#avaliabletable').html(`<div class="alert alert-danger"><strong>Sorry!</strong>Tables are not free at this time.Please you can choose a table another time</div>`);
                             return false;
                         }else{
                             $("#user-info").show();

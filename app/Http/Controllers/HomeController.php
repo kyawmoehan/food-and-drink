@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Customer;
+use App\Message;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $booking = Customer::all();
+        $messages = Message::all();
+        return view('layouts.pages.dashboard',compact('booking','messages'));
     }
 }
