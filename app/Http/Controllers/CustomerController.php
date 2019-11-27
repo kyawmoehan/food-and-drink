@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 use App\Customer;
 use App\Table;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
 class CustomerController extends Controller
 {
     /**
@@ -75,21 +76,33 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function edit($id)
     {
-        //
+        //dd($id);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Requ
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
+class CustomerController extends Controller
+{
+    /**
+est  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request,$id)
+    { 
+        //dd($id);
+        $booking = Customer::find($id);
+        $booking->status = true;
+        $booking ->save();
+        return redirect()->route('customer.index');
     }
 
     /**
@@ -107,6 +120,35 @@ class CustomerController extends Controller
         $Tables = Table::all();
         $info =[$customers,$Tables];
         return $info;
+    }
+     public function cancel($id)
+    { 
+        //dd($id);
+        $booking = Customer::find($id);
+        $booking->status = false;
+        $booking ->save();
+        return redirect()->route('customer.index');
+    }
+    public function mail(Request $request)
+    {
+
+        $name = array(
+            'name'  =>$request->name,
+            'email'  =>$request->email,
+
+            'phone'  =>$request->phone,
+
+            'date'  =>$request->date,
+
+            'arrivingtime'  =>$request->arrivingtime,
+
+            'leavingtime'  =>$request->eavingtime,
+            'table'  =>$request->table
+        );
+
+        Mail::to('khinwinkhaing825@gmail.com')->send(new SendMail($name));
+        return back()->with('success','Thanks');
+
     }
  
 }
