@@ -121,6 +121,7 @@ est  $request
         $info =[$customers,$Tables];
         return $info;
     }
+
      public function cancel($id)
     { 
         //dd($id);
@@ -148,6 +149,15 @@ est  $request
 
         Mail::to('khinwinkhaing825@gmail.com')->send(new SendMail($name));
         return back()->with('success','Thanks');
+    }
+
+    public function report(){
+        $reports = Customer::all();
+        return view('layouts.pages.report',compact('reports'));
+    }
+    public function monthly(){
+        $customers = Customer::all();
+        return $customers;
 
     }
  
