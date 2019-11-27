@@ -19,7 +19,7 @@ class CreateCustomersTable extends Migration
             $table->smallInteger('phone');
             $table->string('email');
             $table->smallInteger('person');
-            $table->date('date');
+            $table->string('date');
             $table->string('arrivingtime');
             $table->string('leavingtime');
             $table->string('table');
